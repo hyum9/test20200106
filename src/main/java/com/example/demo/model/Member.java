@@ -12,7 +12,6 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -27,7 +26,7 @@ public class Member {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private long id;
-	
+
 	@Column(name="password")
 	private String password;
 	
@@ -55,6 +54,11 @@ public class Member {
 	@CreationTimestamp
 	private Date createdAt;
 	
+	public Member()
+	{
+		
+	}
+	
 	public Member(long id, String password, String name, String email, int grade, int language, int math, int science, int socialstudy, Date createdAt) {
 		this.id=id;
 		this.password=password;
@@ -81,4 +85,26 @@ public class Member {
 		this.socialstudy=0;
 		this.createdAt = new Date();
 	}
+	
+	public void setLanguage(int language)
+	{
+		this.language=language;
+	}
+	public void setMath(int math)
+	{
+		this.math=math;
+	}
+	public void setScience(int science)
+	{
+		this.science=science;
+	}
+	public void setSocialstudy(int socialstudy)
+	{
+		this.socialstudy=socialstudy;
+	}
+	
+	
+	
+	
+	
 }
