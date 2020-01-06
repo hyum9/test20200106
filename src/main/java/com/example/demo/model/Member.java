@@ -17,17 +17,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table (name = "member")
 public class Member {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private long id;
-	
+
 	@Column(name="password")
 	private String password;
 	
