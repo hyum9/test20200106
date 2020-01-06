@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>WitiTimer_stopwatchpage</title>
+    <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+
+        $(document).ready(function(){
+            $("#start_stopBtn").val("start");
+        });
+
+        var timerId;
+        var timesec = 0;
+        var timemin = 0;
+        var timeh = 0;
+
+        var check = 0;
+
+        function selectBtn()
+        {
+            if($("#start_stopBtn").val() == "stop")
+            {
+                $("#start_stopBtn").val("start");
+                stop();
+                $("#doneBtn").prop("type", "button");
+            }
+            else
+            {
+                $("#start_stopBtn").val('stop');
+                start();
+                $("#doneBtn").prop("type", "hidden");
+            }
+        }
+
+        function start(){
+            console.log("start");
+            check++;
+            if(check == 1)
+            {
+                timerId = setInterval(startTime, 1);
+            }
+        }
+
+        function stop(){
+            console.log("stop");
+            check = 0;
+            clearInterval(timerId);
+        }
+
+        function reset()
+        {
+            console.log("reset");
+            check = 0;
+            clearInterval(timerId);
+            timesec = 0;
+            timemin = 0;
+            timeh = 0;
+            stopCheck = false;
+
+            $("#doneBtn").prop("type", "hidden");
+            $("#timeh").html(timeh + "0");
+            $("#timemin").html(timemin + "0");
+            $("#timesec").html(timesec + "0");
+        }
+
+        function startTime(){
+
+            ++timesec;
+            console.log("timesec : " + timesec);
+
+            if(timesec == 60)
+            {
+                ++timemin;
+                timesec = 0;
+            }
+
+            if(timemin == 60)
+            {
+                ++timeh;
+                timemin = 0;
+            }
+
+
+            if(timeh < 10)
+            {
+                console.log("timeh : " + timeh);
+                $("#timeh").html("0" + timeh);
+            }
+            else
+            {
+                console.log("timeh : " + timeh);
+                $("#timeh").html(timeh);
+            }
+
+            if(timemin < 10)
+            {
+                console.log("timemin : " + timemin);
+                $("#timemin").html("0" + timemin);
+            }
+            else
+            {
+                console.log("timemin : " + timemin);
+                $("#timemin").html(timemin);
+            }
+
+            if(timesec < 10)
+            {
+                console.log("timesec : " + timesec);
+                $("#timesec").html("0" + timesec);
+            }
+            else
+            {
+                console.log("timesec : " + timesec);
+                $("#timesec").html(timesec);
+            }
+        }
+
+        function done()
+        {
+            location.herf = 'choice.html';
+            // location.herf = "choice.html";
+        }
+
+    </script>
+</head>
+<body>
+    <span style="text-align: center; color:pink ;"><h1>WitiStopwatch</h1></span>
+    <div id="timetext" style="text-align: center; margin-top: 50px;">
+        <span id="timeh">00</span>:<span id="timemin">00</span>:<span id="timesec">00</span>
+    </div>
+    <div style="text-align: center;">
+        <input type="button" id="resetBtn" value="reset" onclick="reset();">
+        <input type="button" id="start_stopBtn" value="" onclick="selectBtn();">
+    </div>
+    <div style="text-align: center;">
+        <input type="hidden" id="doneBtn" value = "Done" onclick="done();">
+    </div>
+</body>
+</html>
