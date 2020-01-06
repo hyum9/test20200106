@@ -1,1 +1,7 @@
+<<<<<<< HEAD
 rootProject.name = 'demover2'
+=======
+rootProject.name = 'demover2'
+//spring.mvc.view.prefix="/WEB-INF/views"
+//spring.mvc.view.suffix=".jsp"
+>>>>>>> 62fa017e680bbf520ee318047a4cb997d59f5bc7
